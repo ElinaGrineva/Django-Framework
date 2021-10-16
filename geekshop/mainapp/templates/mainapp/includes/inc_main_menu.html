@@ -1,0 +1,7 @@
+{% load static %}
+<li><a href="{% url 'index' %}" {% if 'index' in request.resolver_match.url_name %}
+    class="active"{% endif %}>домой</a></li>
+<li><a href="{% url 'products' %}" {% if 'products' in request.resolver_match.url_name %}
+    class="active"{% endif %}>продукты</a></li>
+<li><a href="{% url 'contact' %}" {% if 'contact' in request.resolver_match.url_name %}
+    class="active"{% endif %}>контакты</a></li>
