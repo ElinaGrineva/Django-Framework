@@ -1,10 +1,15 @@
 {% load static %}
-<li><a href="{% url 'index' %}" {% if 'index' in request.resolver_match.url_name %}
+<li>
+    <a href="{% url 'index' %}" {% if 'index' in request.resolver_match.url_name %}
     class="active"{% endif %}>домой</a></li>
-<li><a href="{% url 'products:products' %}" {% if 'products' in request.resolver_match.url_name %}
-    class="active"{% endif %}>продукты</a></li>
-<li><a href="{% url 'contact' %}" {% if 'contact' in request.resolver_match.url_name %}
-    class="active"{% endif %}>контакты</a></li>
+<li>
+    <a href="{% url 'products:products' %}" {% if request.resolver_match.namespace == 'products' %}
+    class="active"{% endif %}>продукты</a>
+</li>
+<li>
+    <a href="{% url 'contact' %}" {% if 'contact' in request.resolver_match.url_name %}
+    class="active"{% endif %}>контакты</a>
+</li>
 
 
 {% if user.is_authenticated %}
