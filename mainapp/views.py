@@ -1,5 +1,6 @@
 import random
 
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from basketapp.models import Basket
@@ -10,7 +11,9 @@ from mainapp.models import Product, ProductCategory
 def index(request):
     context = {
         'title': 'Главная',
-        'products': Product.objects.all()[:4]
+        'products': Product.objects.filter(
+            Q(category__name='дом') | Q(category__name='офис')
+        )
     }
     return render(request, 'mainapp/index.html', context)
 
